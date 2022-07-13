@@ -1,4 +1,5 @@
 <!doctype html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 	#mainPopup {
 		padding: 10px;
@@ -11,7 +12,30 @@
 	}
 </style>
 
+ <!--Fixare questo-->
+ <!-- MDB icon -->
+ <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+ <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+ <!-- Google Fonts Roboto -->
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+ <!-- MDB -->
+ <link rel="stylesheet" href="css/mdb.min.css" />
+
 <div id="mainPopup">
-<h1>Hello extensionizr!</h1>
-<p>To shut this popup down, edit the manifest file and remove the "default popup" key. To edit it, just edit ext/browser_action/browser_action.html. The CSS is there, too.</p>
+<h1>Quantification</h1>
+<p>Effettua la quantificazione del contributo.</p>
+	<script src="../../js/fetchRepository"></script>
+	<label for="quantifica">Inserici URL del progetto: </label>
+	<input type="text" id="textName" name="quantifica"><br><br>
+	<button class="btn" value="Sottometti" onclick="extractNameRepo()">Sottometti</button>
+	
 </div>
+
+<div id="containerCollaboratori">
+<div>
+	
+</div>
+</div>
+
+

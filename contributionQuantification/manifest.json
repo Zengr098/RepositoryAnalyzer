@@ -1,9 +1,8 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "Quantification",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.com",
-  "homepage_url": "http://extensionizr.com",
+  "description": "Questa estensione quantifica il contributo degli sviluppatori che partecipano ad un progetto considerando i cambiamenti essenziali.",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
