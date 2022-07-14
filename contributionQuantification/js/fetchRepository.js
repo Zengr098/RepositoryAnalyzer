@@ -32,15 +32,14 @@ function fetchContributors(contributors_url){
   });
 }
 
-
-
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
 function creaDiv(image, name, commit, InsertLine, removeLine, graphic){
 
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
+
     var container = document.getElementById("containerCollaboratori");
-    var containerHtml = "        <\/div>   ";
-    containerHtml += "        <div class=\"flip-card\">";
+    
+    var containerHtml = "        <div class=\"flip-card\" style=\"position:relative; float:left;\">";
     containerHtml += "          <div class=\"flip-card-inner\">";
     containerHtml += "            <div class=\"flip-card-front\">";
     containerHtml += "              <img src=\""+image+" + alt=\"Avatar\" style=\"width:300px;height:300px;\">";
@@ -48,12 +47,15 @@ function creaDiv(image, name, commit, InsertLine, removeLine, graphic){
     containerHtml += "            <div class=\"flip-card-back\">";
     containerHtml += "              <h1>"+name+"<\/h1> ";
     containerHtml += "              <p>Numero commit:"+commit+"<\/p>";
-    containerHtml += "              <p>We love that guy<\/p>";
+    containerHtml += "              <p>Linee di codice aggiunte<\/p>";
+    containerHtml += "              <p>Linee di codice eliminate<\/p>";
+    containerHtml += "              <p>Gafico <\/p>";
+    containerHtml += "              <p><\/p>";
     containerHtml += "            <\/div>";
     containerHtml += "          <\/div>";
     containerHtml += "        <\/div>   ";
 
-
+    
     container.innerHTML = container.innerHTML + containerHtml;
 
 }
