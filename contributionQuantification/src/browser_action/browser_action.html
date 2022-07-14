@@ -1,5 +1,4 @@
 <!doctype html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 	#mainPopup {
 		padding: 10px;
@@ -23,19 +22,12 @@
  <link rel="stylesheet" href="css/mdb.min.css" />
 
 <div id="mainPopup">
-<h1>Quantification</h1>
-<p>Effettua la quantificazione del contributo.</p>
-	<script src="../../js/fetchRepository"></script>
+	<h1>Quantification</h1>
+	<p>Effettua la quantificazione del contributo.</p>
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/urlModifier.js"></script>
+
 	<label for="quantifica">Inserici URL del progetto: </label>
 	<input type="text" id="textName" name="quantifica"><br><br>
-	<button class="btn" value="Sottometti" onclick="extractNameRepo()">Sottometti</button>
-	
+	<a id="sottometti" class="btn btn-primary" value="Sottometti" href="#" target="_blank">Sottometti</a>
 </div>
-
-<div id="containerCollaboratori">
-<div>
-	
-</div>
-</div>
-
-
