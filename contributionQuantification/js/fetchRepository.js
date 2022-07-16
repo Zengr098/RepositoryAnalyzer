@@ -33,6 +33,16 @@ function fetchContributors(contributors_url){
 }
 
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
+function getRepository(nameRepo, description){
+  var container = document.getElementById("nomeRepository");
+
+  var containerHtml="";
+  containerHtml += "<h1 class=\"masthead-heading text-uppercase mb-0\">"+nameRepo+"<\/h1>";
+
+  container.innerHTML = container.innerHTML + containerHtml;
+}
+
+//Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
 function creaDiv(image, name, commit, insertLine, removeLine, graphic){
 
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
@@ -54,9 +64,7 @@ function creaDiv(image, name, commit, insertLine, removeLine, graphic){
     containerHtml += "                            <\/div>";
     containerHtml += "                    <\/div>";
 
-
     container.innerHTML = container.innerHTML + containerHtml;
-
 }
 
 //Funzione che permette di ottenere dall'URL l'ownerName e la repositoryName
@@ -66,3 +74,12 @@ function extractNameRepo(){
 
     fetchRepository(myArray[3], myArray[4]);
 }
+
+//Retrieves Repository name
+/*function getNameRepository(){
+  var url = window.location.hash;
+  const myArray = url.split("/");
+
+    fetchRepository(myArray[4]);
+    console.log(url);
+}*/
