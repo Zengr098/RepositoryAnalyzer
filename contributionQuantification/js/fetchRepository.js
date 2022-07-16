@@ -34,7 +34,7 @@ function fetchContributors(contributors_url){
 
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
 function creaDiv(image, name, commit, InsertLine, removeLine, graphic){
-
+    
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
 
     var container = document.getElementById("containerCollaboratori");

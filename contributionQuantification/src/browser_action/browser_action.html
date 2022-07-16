@@ -5,9 +5,13 @@
 		height: 200px;
 		width: 400px;
 		font-family: Helvetica, Ubuntu, Arial, sans-serif;
+		background-color:hsl(120,60%,70%);
 	}
 	h1 {
 		font-size: 2em;
+	}
+	#textName {
+		border-radius: 10px 10px 10px 10px;
 	}
 </style>
 
@@ -22,12 +26,11 @@
  <link rel="stylesheet" href="css/mdb.min.css" />
 
 <div id="mainPopup">
-	<h1>Quantification</h1>
-	<p>Effettua la quantificazione del contributo.</p>
+	<h1>Repository analysis</h1>
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/urlModifier.js"></script>
 
-	<label for="quantifica">Inserici URL del progetto: </label>
-	<input type="text" id="textName" name="quantifica"><br><br>
+	<label for="quantifica">Inserici l'URL della repository: </label>
+	<input type="text" id="textName" name="quantifica" size = "30"><br><br>
 	<a id="sottometti" class="btn btn-primary" value="Sottometti" href="#" target="_blank">Sottometti</a>
 </div>
