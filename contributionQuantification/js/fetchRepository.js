@@ -39,7 +39,7 @@ function creaDiv(image, name, commit, InsertLine, removeLine, graphic){
 
     var container = document.getElementById("containerCollaboratori");
     
-    var containerHtml = "        <div class=\"flip-card\" style=\"position:relative; float:left;\">";
+    /*var containerHtml = "        <div class=\"flip-card\" style=\"position:relative; float:left;\">";
     containerHtml += "          <div class=\"flip-card-inner\">";
     containerHtml += "            <div class=\"flip-card-front\">";
     containerHtml += "              <img src=\""+image+" + alt=\"Avatar\" style=\"width:300px;height:300px;\">";
@@ -53,9 +53,19 @@ function creaDiv(image, name, commit, InsertLine, removeLine, graphic){
     containerHtml += "              <p><\/p>";
     containerHtml += "            <\/div>";
     containerHtml += "          <\/div>";
-    containerHtml += "        <\/div>   ";
+    containerHtml += "        <\/div>   ";*/
 
-    
+    var containerHtml="";
+    containerHtml += "<div class=\"col-md-6 col-lg-4 mb-5\">";
+    containerHtml += "                        <div class=\"portfolio-item mx-auto\" data-bs-toggle=\"modal\" data-bs-target=\"#portfolioModal1\">";
+    containerHtml += "                            <div class=\"portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100\">";
+    containerHtml += "                                <div class=\"portfolio-item-caption-content text-center text-white\"><i class=\"fas fa-plus fa-3x\"><\/i><\/div>";
+    containerHtml += "                            <\/div>";
+    containerHtml += "                            <img class=\"img-fluid\" src=\""+image+" + alt=\"...\" \/>";
+    containerHtml += "              <h1>"+name+"<\/h1> ";
+    containerHtml += "                        <\/div>";
+    containerHtml += "                    <\/div>";
+
     container.innerHTML = container.innerHTML + containerHtml;
 
 }
