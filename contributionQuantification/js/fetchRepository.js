@@ -18,10 +18,10 @@ function fetchRepository(ownerName, repositoryName){
 
 //Funzione che prende in input contributors_url e produce come rispiìosta un JSON
 function fetchContributors(contributors_url){
-  
+
   var request = $.get(contributors_url, function () {}).done(function () {
     request = request.responseJSON;
-    
+
     for(var i = 0; i < request.length; i++){
       var name = request[i].login;
       var image = request[i].avatar_url;
@@ -34,7 +34,7 @@ function fetchContributors(contributors_url){
 
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
 function creaDiv(image, name, commit, insertLine, removeLine, graphic){
-    
+
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
 
     var container = document.getElementById("containerCollaboratori");
@@ -53,7 +53,7 @@ function creaDiv(image, name, commit, insertLine, removeLine, graphic){
     containerHtml += "                              <\/div>";
     containerHtml += "                            <\/div>";
     containerHtml += "                    <\/div>";
-    
+
 
     container.innerHTML = container.innerHTML + containerHtml;
 
