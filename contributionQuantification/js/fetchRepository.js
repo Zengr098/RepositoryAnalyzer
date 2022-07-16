@@ -25,7 +25,7 @@ function fetchContributors(contributors_url){
     for(var i = 0; i < request.length; i++){
       var name = request[i].login;
       var image = request[i].avatar_url;
-      var  commit = request[i].contributions;
+      var commit = request[i].contributions;
       creaDiv(image, name, commit);
     }
 
@@ -33,36 +33,25 @@ function fetchContributors(contributors_url){
 }
 
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
-function creaDiv(image, name, commit, InsertLine, removeLine, graphic){
+function creaDiv(image, name, commit, insertLine, removeLine, graphic){
     
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
 
     var container = document.getElementById("containerCollaboratori");
-    
-    /*var containerHtml = "        <div class=\"flip-card\" style=\"position:relative; float:left;\">";
-    containerHtml += "          <div class=\"flip-card-inner\">";
-    containerHtml += "            <div class=\"flip-card-front\">";
-    containerHtml += "              <img src=\""+image+" + alt=\"Avatar\" style=\"width:300px;height:300px;\">";
-    containerHtml += "            <\/div>";
-    containerHtml += "            <div class=\"flip-card-back\">";
-    containerHtml += "              <h1>"+name+"<\/h1> ";
-    containerHtml += "              <p>Numero commit:"+commit+"<\/p>";
-    containerHtml += "              <p>Linee di codice aggiunte<\/p>";
-    containerHtml += "              <p>Linee di codice eliminate<\/p>";
-    containerHtml += "              <p>Gafico <\/p>";
-    containerHtml += "              <p><\/p>";
-    containerHtml += "            <\/div>";
-    containerHtml += "          <\/div>";
-    containerHtml += "        <\/div>   ";*/
 
     var containerHtml="";
-    containerHtml += "<div class=\"col-md-6 col-lg-4 mb-5\">";
-    containerHtml += "                        <div class=\"portfolio-item mx-auto\" data-bs-toggle=\"modal\" data-bs-target=\"#portfolioModal1\">";
-    containerHtml += "                            <div class=\"portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100\">";
-    containerHtml += "                                <div class=\"portfolio-item-caption-content text-center text-white\"><i class=\"fas fa-plus fa-3x\"><\/i><\/div>";
+    containerHtml += "                    <div class=\"container\">";
+    containerHtml += "                            <div class=\"row\">";
+    containerHtml += "                              <div class=\"col-lg-4 ms-auto\">";
+    containerHtml += "                                <img class=\"img-fluid\" src=\""+image+" + alt=\"...\" \/>";
+    containerHtml += "                              <\/div>";
+    containerHtml += "                              <div class=\"col-lg-8 mt-4 pt-lg-0 content\">";
+    containerHtml += "                                <h4>Developer username: <b>"+name+"<\/b><\/h4>";
+    containerHtml += "                                <h5>Commit number: <b>"+commit+"<\/b><\/h5>";
+    containerHtml += "                                <h5>Code line embedded: <b>"+insertLine+"<\/b><\/h5>";
+    containerHtml += "                                <h5>Code line removed: <b>"+removeLine+"<\/b><\/h5>";
+    containerHtml += "                              <\/div>";
     containerHtml += "                            <\/div>";
-    containerHtml += "                            <img class=\"img-fluid\" src=\""+image+" + alt=\"...\" \/>";
-    containerHtml += "                        <\/div>";
     containerHtml += "                    <\/div>";
     
 
