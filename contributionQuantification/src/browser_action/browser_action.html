@@ -1,49 +1,27 @@
 <!doctype html>
-<style type="text/css">
-	#mainPopup {
-		padding: 10px;
-		height: 200px;
-		width: 400px;
-		font-style: normal;
-		background-color: #1abc9c;
-	}
-	h1 {
-		font-size: 2em;
-		margin-top: 8px;
-	}
-	#textName {
-		border-radius: 8px 8px 8px 8px;
-	}
-	#sottometti {
-		background-color: white;
-  		color: black;
-  		border: 2px solid #555555;
-		padding: 2.7px;
-		border-radius: 8px 8px 8px 8px;
-		text-decoration: none;
-	}
 
+<head>
+	<!--Fixare questo-->
+	<!-- MDB icon -->
+	<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+	<!-- Google Fonts Roboto -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+	<!-- MDB -->
+	<link rel="stylesheet" href="css/mdb.min.css" />
+	<link rel="stylesheet" href="css/styles.css"/>
+</head>
 
+<body>
+	<div id="mainPopup" class="mainPopup bg-primary text-center">
+		<img id="logo" src="assets/img/icon48.png" style="float: left; margin-right: 15px;" alt="image" >
+		<h1>Repository Analyzer</h1>
+		<script src="../../js/jquery.js"></script>
+		<script src="../../js/urlModifier.js"></script>
 
-</style>
-
- <!--Fixare questo-->
- <!-- MDB icon -->
- <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
- <!-- Font Awesome -->
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
- <!-- Google Fonts Roboto -->
- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
- <!-- MDB -->
- <link rel="stylesheet" href="css/mdb.min.css" />
-
-<div id="mainPopup">
-	<img id="logo" src="assets/img/icon48.png" style="float: left; margin-right: 15px;" alt="image" >
-	<h1>Repository Analyzer</h1>
-	<script src="../../js/jquery.js"></script>
-	<script src="../../js/urlModifier.js"></script>
-
-	<label for="quantifica">Inserici URL repository GitHub: </label>
-	<input type="text" id="textName" name="quantifica" size = "29"><br><br>
-	<center><a id="sottometti" class="btn btn-primary" value="Sottometti" href="#" target="_blank">Sottometti</a></center>
-</div>
+		<h6>Insert Github Repository URL: </h6>
+		<input type="text" id="textName" name="quantifica" class="form-control labelPlugin" size="3"><br>
+		<a id="sottometti" class="btn btn-m btn-outline-light" value="Inspect" href="#" target="_blank">Submit</a>
+	</div>
+</body>

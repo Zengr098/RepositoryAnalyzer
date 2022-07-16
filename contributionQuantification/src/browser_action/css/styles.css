@@ -66,6 +66,17 @@
   }
 }
 
+.mainPopup{
+  height:200px;
+  width: 400px;
+  padding: 5px;
+}
+
+.labelPlugin{
+  font-family: var(--bs-body-font-family);
+  font-size: calc(1.375rem + 1.5vw);
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
