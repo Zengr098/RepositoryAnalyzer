@@ -17,6 +17,28 @@ function fetchRepository(ownerName, repositoryName){
 }
 
 //Funzione che prende in input contributors_url e produce come rispiìosta un JSON
+function fetchContributors(name){
+
+  var request = $.get(name, function () {}).done(function () {
+    request = request.responseJSON;
+
+    var nameRepo = request.name;
+    getRepository(nameRepo);
+
+  });
+}
+//Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
+function getRepository(nameRepo){
+  var container = document.getElementById("nomeRepository");
+
+  var containerHtml="";
+  containerHtml += "<h1 class=\"masthead-heading text-uppercase mb-0\">"+nameRepo+"<\/h1>";
+
+  container.innerHTML = container.innerHTML + containerHtml;
+}
+
+
+//Funzione che prende in input contributors_url e produce come rispiìosta un JSON
 function fetchContributors(contributors_url){
 
   var request = $.get(contributors_url, function () {}).done(function () {
@@ -31,17 +53,6 @@ function fetchContributors(contributors_url){
 
   });
 }
-
-//Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
-function getRepository(nameRepo, description){
-  var container = document.getElementById("nomeRepository");
-
-  var containerHtml="";
-  containerHtml += "<h1 class=\"masthead-heading text-uppercase mb-0\">"+nameRepo+"<\/h1>";
-
-  container.innerHTML = container.innerHTML + containerHtml;
-}
-
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
 function creaDiv(image, name, commit, insertLine, removeLine, graphic){
 
