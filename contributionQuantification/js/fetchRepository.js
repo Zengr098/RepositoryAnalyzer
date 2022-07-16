@@ -62,9 +62,9 @@ function creaDiv(image, name, commit, InsertLine, removeLine, graphic){
     containerHtml += "                                <div class=\"portfolio-item-caption-content text-center text-white\"><i class=\"fas fa-plus fa-3x\"><\/i><\/div>";
     containerHtml += "                            <\/div>";
     containerHtml += "                            <img class=\"img-fluid\" src=\""+image+" + alt=\"...\" \/>";
-    containerHtml += "              <h1>"+name+"<\/h1> ";
     containerHtml += "                        <\/div>";
     containerHtml += "                    <\/div>";
+    
 
     container.innerHTML = container.innerHTML + containerHtml;
 
