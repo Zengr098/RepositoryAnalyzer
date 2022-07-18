@@ -42,7 +42,7 @@
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="assets/img/icon128.png" alt="..." />
                 <!-- Masthead Heading-->
-                <div id="nomeRepository">
+                <h1 id="repoName" class="repoName masthead-heading text-uppercase mb-0"></h1>
                     <!--<h1 class="masthead-heading text-uppercase mb-0">${NOME PROGETTO}</h1>-->
                 </div>
                 <!-- Icon Divider-->
@@ -52,7 +52,7 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">//Descrizione progetto\\</p>
+                <p id="description" class="description masthead-subheading font-weight-light mb-0"></p>
             </div>
         </header>
         
@@ -73,13 +73,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-4 ms-auto">
-                                <!--<img id="image" class="img-fluid" src=""+image+" + alt="..." />-->
+                                <div id="imageCollaborators" class="imageCollaborators"><img id="image" src="" class="image"/></div>
                             </div>
                             
                             <div class="col-lg-8 mt-4 pt-lg-0 content">
                                 <div id="containerContributors" class="containerContributors">
-                                    <p class="username"></p>
-                                    <p class="commit"></p>
+                                    <h5 id="username" class="username"></h5>
+                                    <h6 id="commit" class="commit"></h6>
                                 </div>
                             </div>
                         </div>    

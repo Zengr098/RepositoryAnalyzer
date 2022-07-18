@@ -21,6 +21,7 @@ function fetchRepository(ownerName, repositoryName){
       //link per informazioni sui collaboratori
       var contributors_url = request['contributors_url'];
       fetchContributors(contributors_url);
+      showRepoName(request);
     });
 }
 
@@ -46,9 +47,21 @@ function fetchContributors(contributors_url){
       }
 
       showNameContributors(contributors);
-      showCommitContributors(contributors)
     });
-  }
+}
+
+// Funzione che mostra il nome della repository
+function showRepoName(request) {
+    div = $(".repoName");
+    nameRepo = request.name;
+    nameRepo.textContent = request.name;
+    div.append(nameRepo);
+
+    div = $(".description");
+    description = request.description;
+    description.textContent = request.description;
+    div.append(description);
+}
 
 // Funzione che mostra il nome dello sviluppatore
 function showNameContributors(contributors) {
@@ -68,4 +81,17 @@ function showNameContributors(contributors) {
 
     pname.remove();
     pcommit.remove();
+}
+
+// Funzione che mostra l'immagine dello sviluppatore
+function showImageContributors(contributors) {
+    var data = [];
+    var link = "chrome-extension://paiocjmlmleigfefjijbaglphlbgfcdo/src/browser_action/contribuenti.html/";
+    contributors.forEach(c => {
+        data.push(c.image);
+          
+        $.getJSON(link+ $.param(data), function (res) {});
+    });
+
+    pimage.remove();
 }
