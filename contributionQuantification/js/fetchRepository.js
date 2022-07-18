@@ -59,7 +59,22 @@ function creaDiv(image, name, commit, insertLine, removeLine, graphic){
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
 
     var container = document.getElementById("containerCollaboratori");
-    
+
+    var containerHtml="";
+    containerHtml += "                    <div class=\"container\">";
+    containerHtml += "                            <div class=\"row\">";
+    containerHtml += "                              <div class=\"col-lg-4 ms-auto\">";
+    containerHtml += "                                <img class=\"img-fluid\" src=\""+image+" + alt=\"...\" \/>";
+    containerHtml += "                              <\/div>";
+    containerHtml += "                              <div class=\"col-lg-8 mt-4 pt-lg-0 content\">";
+    containerHtml += "                                <h4>Developer username: <b>"+name+"<\/b><\/h4>";
+    containerHtml += "                                <h5>Commit number: <b>"+commit+"<\/b><\/h5>";
+    containerHtml += "                                <h5>Code line embedded: <b>"+insertLine+"<\/b><\/h5>";
+    containerHtml += "                                <h5>Code line removed: <b>"+removeLine+"<\/b><\/h5>";
+    containerHtml += "                              <\/div>";
+    containerHtml += "                            <\/div>";
+    containerHtml += "                    <\/div>";
+
     container.innerHTML = container.innerHTML + containerHtml;
 }
 
