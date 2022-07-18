@@ -1,6 +1,7 @@
 window.onload = function(){
   extractNameRepo();
 }
+
 //Funzione che prende in input il proprietario della repository e la repository stessa producendo come risposta un JSON
 function fetchRepository(ownerName, repositoryName){
 
@@ -12,37 +13,22 @@ function fetchRepository(ownerName, repositoryName){
     //link per informazioni sui collaboratori
     var contributors_url = request['contributors_url'];
     fetchContributors(contributors_url);
-
-    //link per ottenere il nome della repository
-    var name = request['name'];
-    fetchRepositoryName(name);
   });
 }
 
+//Funzione che prende in input contributors_url e produce come rispiìosta un JSON
+function fetchContributors(name){
 
-
-function fetchRepositoryName(name){
-  var request = $.get(contributors_url, function() {}).done(function () {
+  var request = $.get(name, function () {}).done(function () {
     request = request.responseJSON;
 
-    var repositoryName = request.name;
-    creaDivRepositoryName(repositoryName);
+    var nameRepo = request.name;
+    getRepository(nameRepo);
+
   });
 }
 
-function creaDivRepositoryName(repositoryName){
-
-  var container = document.getElementById("nomeRepository");
-
-  var containerHtml = "";
-  containerHtml += "<h4>Repository name: <b>"+repositoryName+"<\/b><\/h4>";
-
-  container.innerHTML = container.innerHTML + containerHtml;
-}
-
-
-
-//Funzione che prende in input contributors_url e produce come risposta un JSON
+//Funzione che prende in input contributors_url e produce come rispiìosta un JSON
 function fetchContributors(contributors_url){
 
   var request = $.get(contributors_url, function () {}).done(function () {
@@ -54,6 +40,7 @@ function fetchContributors(contributors_url){
       var commit = request[i].contributions;
       passParameters(image, name, commit);
     }
+
   });
 }
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
@@ -62,21 +49,6 @@ function creaDiv(image, name, commit, insertLine, removeLine, graphic){
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
 
     var container = document.getElementById("containerCollaboratori");
-
-    var containerHtml = "";
-    containerHtml += "                    <div class=\"container\">";
-    containerHtml += "                            <div class=\"row\">";
-    containerHtml += "                              <div class=\"col-lg-4 ms-auto\">";
-    containerHtml += "                                <img class=\"img-fluid\" src=\""+image+" + alt=\"...\" \/>";
-    containerHtml += "                              <\/div>";
-    containerHtml += "                              <div class=\"col-lg-8 mt-4 pt-lg-0 content\">";
-    containerHtml += "                                <h4>Developer username: <b>"+name+"<\/b><\/h4>";
-    containerHtml += "                                <h5>Commit number: <b>"+commit+"<\/b><\/h5>";
-    containerHtml += "                                <h5>Code line embedded: <b>"+insertLine+"<\/b><\/h5>";
-    containerHtml += "                                <h5>Code line removed: <b>"+removeLine+"<\/b><\/h5>";
-    containerHtml += "                              <\/div>";
-    containerHtml += "                            <\/div>";
-    containerHtml += "                    <\/div>";
 
     container.innerHTML = container.innerHTML + containerHtml;
 }
