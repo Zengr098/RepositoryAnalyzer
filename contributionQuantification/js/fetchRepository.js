@@ -1,6 +1,7 @@
 window.onload = function(){
   extractNameRepo();
 }
+
 //Funzione che prende in input il proprietario della repository e la repository stessa producendo come risposta un JSON
 function fetchRepository(ownerName, repositoryName){
 
@@ -18,8 +19,6 @@ function fetchRepository(ownerName, repositoryName){
     fetchRepositoryName(name);
   });
 }
-
-
 
 function fetchRepositoryName(name){
   var request = $.get(contributors_url, function() {}).done(function () {
@@ -56,6 +55,7 @@ function fetchContributors(contributors_url){
     }
   });
 }
+
 //Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
 function creaDiv(image, name, commit, insertLine, removeLine, graphic){
 

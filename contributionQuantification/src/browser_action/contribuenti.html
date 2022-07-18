@@ -17,9 +17,8 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-
         <script src="../../js/jquery.js"></script>
-        <script src="../../js/fetchRepository.js"></script>
+        <script src="../../js/contributors.js"></script>
 
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -71,20 +70,19 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Items-->
-                    <div id="containerCollaboratori">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-4 ms-auto">
-                                    <img class="img-fluid" src=\""+image+" + alt="..." />
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 ms-auto">
+                                <!--<img id="image" class="img-fluid" src=""+image+" + alt="..." />-->
+                            </div>
+                            
+                            <div class="col-lg-8 mt-4 pt-lg-0 content">
+                                <div id="containerContributors" class="containerContributors">
+                                    <p class="username"></p>
+                                    <p class="commit"></p>
                                 </div>
-                                <div class="col-lg-8 mt-4 pt-lg-0 content">
-                                    <p id="username"><!--<h4>Developer username: <b>+name+</b></h4>--></p>
-                                    <h5>Commit number: <b>"+commit+"</b></h5>
-                                    <h5>Code line embedded: <b>"+insertLine+"</b></h5>
-                                    <h5>Code line removed: <b>"+removeLine+"</b></h5>
-                                </div>
-                            </div>    
-                        </div>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
