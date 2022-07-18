@@ -29,16 +29,6 @@ function fetchRepositoryName(name){
     creaDivRepositoryName(repositoryName);
   });
 }
-//Funzione che dai contribuitori prende tutti i dati che voglio mostrare nella nuova pagina quando cliccoSottometti
-function getRepository(nameRepo){
-  var container = document.getElementById("nomeRepository");
-
-  var containerHtml="";
-  containerHtml += "<h1 class=\"masthead-heading text-uppercase mb-0\">"+nameRepo+"<\/h1>";
-
-  container.innerHTML = container.innerHTML + containerHtml;
-}
-
 
 function creaDivRepositoryName(repositoryName){
 
@@ -62,7 +52,7 @@ function fetchContributors(contributors_url){
       var name = request[i].login;
       var image = request[i].avatar_url;
       var commit = request[i].contributions;
-      creaDiv(image, name, commit);
+      passParameters(image, name, commit);
     }
   });
 }
@@ -72,7 +62,6 @@ function creaDiv(image, name, commit, insertLine, removeLine, graphic){
     //Trasformo l'HTML in stringhe in modo da generarlo dinamicamente
 
     var container = document.getElementById("containerCollaboratori");
-<<<<<<< HEAD
 
     var containerHtml = "";
     containerHtml += "                    <div class=\"container\">";
@@ -89,9 +78,6 @@ function creaDiv(image, name, commit, insertLine, removeLine, graphic){
     containerHtml += "                            <\/div>";
     containerHtml += "                    <\/div>";
 
-=======
-    
->>>>>>> parent of 116f0b4 (Front end modifier)
     container.innerHTML = container.innerHTML + containerHtml;
 }
 
@@ -111,3 +97,19 @@ function extractNameRepo(){
     fetchRepository(myArray[4]);
     console.log(url);
 }*/
+
+function passParameters(name, image, commit) {
+  pusername = div.children(".username")[0];
+  //pspeaker = div.children(".talk-speaker")[0];
+
+  name.forEach(name => {
+      newusername = pusername.cloneNode(true);
+      newusername.textContent = name.pusername;
+      div.append(newusername);
+      //newspeaker = pspeaker.cloneNode(true);
+      //newspeaker.textContent = talk.name + " " + talk.surname + ", " + talk.affiliation;
+      //div.append(newspeaker);
+  });
+  pusername.remove();
+  //pspeaker.remove();
+}
