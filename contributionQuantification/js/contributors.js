@@ -1,6 +1,6 @@
 window.onload = function(){
     extractNameRepo();
-  }
+}
 
 //Funzione che permette di ottenere dall'URL l'ownerName e la repositoryName
 function extractNameRepo(){
@@ -31,6 +31,7 @@ function fetchContributors(contributors_url){
     var request = $.get(contributors_url, function () {}).done(function () {
     request = request.responseJSON;
     var contributors = [];
+    var data = [];
   
       for(var i = 0; i < request.length; i++){
         var name = request[i].login;
@@ -43,10 +44,12 @@ function fetchContributors(contributors_url){
             commit: ncommit
         };
         
+        data.push(image);
         contributors.push(contributor);
       }
 
       showNameContributors(contributors);
+      showImageContributors(data);
     });
 }
 
@@ -84,14 +87,10 @@ function showNameContributors(contributors) {
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
-function showImageContributors(contributors) {
-    var data = [];
-    var link = "chrome-extension://paiocjmlmleigfefjijbaglphlbgfcdo/src/browser_action/contribuenti.html/";
-    contributors.forEach(c => {
-        data.push(c.image);
-          
-        $.getJSON(link+ $.param(data), function (res) {});
-    });
+function showImageContributors(data) {
+    var url = "chrome-extension://paiocjmlmleigfefjijbaglphlbgfcdo/src/browser_action/contribuenti.html";
+    var nameRepo = window.location.hash;
+    var fullLink = url+nameRepo;
 
-    pimage.remove();
-}
+    document.getElementById("imageCollaborators").appendChild(() => data.map((image) => <img src='${data}' />));
+  }
