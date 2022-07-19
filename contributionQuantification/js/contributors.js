@@ -88,9 +88,12 @@ function showNameContributors(contributors) {
 
 // Funzione che mostra l'immagine dello sviluppatore
 function showImageContributors(data) {
-    var url = "chrome-extension://paiocjmlmleigfefjijbaglphlbgfcdo/src/browser_action/contribuenti.html";
-    var nameRepo = window.location.hash;
-    var fullLink = url+nameRepo;
+    for(var i=0; i<data.length; i++){
+        var container = document.getElementById("imageCollaborators");
+        
+        var containerHtml="";
+        containerHtml += "<img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
 
-    document.getElementById("imageCollaborators").appendChild(() => data.map((image) => <img src='${data}' />));
+        container.innerHTML = container.innerHTML + containerHtml;
+    }
   }
