@@ -17,9 +17,8 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-
         <script src="../../js/jquery.js"></script>
-        <script src="../../js/fetchRepository.js"></script>
+        <script src="../../js/contributors.js"></script>
 
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -43,7 +42,9 @@
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="assets/img/icon128.png" alt="..." />
                 <!-- Masthead Heading-->
-                <div id="nomeRepository"></div>
+                <h1 id="repoName" class="repoName masthead-heading text-uppercase mb-0"></h1>
+                    <!--<h1 class="masthead-heading text-uppercase mb-0">${NOME PROGETTO}</h1>-->
+                </div>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -51,7 +52,7 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">//Descrizione progetto\\</p>
+                <p id="description" class="description masthead-subheading font-weight-light mb-0"></p>
             </div>
         </header>
         
@@ -69,22 +70,10 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Items-->
-<<<<<<< Updated upstream
-                    <div id="containerCollaboratori"></div>
-=======
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-4 ms-auto">
-                                <div id="imageCollaborators" class="imageCollaborators">
-                                    <!--<script>function getFoto()
-                                        {
-                                            var url = window.location.href;
-                                            const a = url.split("foto=");
-                                            return a[1];
-                                        }
-                                    </script>-->
-                                    <img src="javascript:window.location.search" alt="cazzo"/>
-                                </div>
+                                <div id="imageCollaborators" class="imageCollaborators"> </div>
                             </div>
                             
                             <div class="col-lg-8 mt-4 pt-lg-0 content">
@@ -95,7 +84,6 @@
                             </div>
                         </div>    
                     </div>
->>>>>>> Stashed changes
                 </div>
             </div>
         </section>

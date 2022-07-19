@@ -9,6 +9,7 @@ function extractNameRepo(){
     fetchRepository(myArray[3], myArray[4]);
 }
 
+
 //Funzione che prende in input il proprietario della repository e la repository stessa producendo come risposta un JSON
 function fetchRepository(ownerName, repositoryName){
 
@@ -87,10 +88,12 @@ function showNameContributors(contributors) {
 
 // Funzione che mostra l'immagine dello sviluppatore
 function showImageContributors(data) {
-    var url = "chrome-extension://paiocjmlmleigfefjijbaglphlbgfcdo/src/browser_action/contribuenti.html";
-    var nameRepo = window.location.hash;
-    var fullLink = url+nameRepo;
+    for(var i=0; i<data.length; i++){
+        var container = document.getElementById("imageCollaborators");
+        
+        var containerHtml="";
+        containerHtml += "<img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
 
-    var foto = data[0];
-    window.location.href = fullLink+foto;
-}
+        container.innerHTML = container.innerHTML + containerHtml;
+    }
+  }
