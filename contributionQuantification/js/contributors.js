@@ -89,7 +89,7 @@ function showNameContributors(contributors) {
 // Funzione che mostra l'immagine dello sviluppatore
 function showImageContributors(data) {
     for(var i=0; i<data.length; i++){
-        var container = document.getElementById("imageCollaborators");
+        var container = document.getElementById("containerContributors");
         
         var containerHtml="";
         containerHtml += "<img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
