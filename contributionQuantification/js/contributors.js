@@ -15,7 +15,7 @@ function fetchRepository(ownerName, repositoryName){
 
     var requestURL = "https://api.github.com/repos/" + ownerName + "/"+repositoryName;
     var request = $.get(requestURL, function () {}).done(function () {
-      request = request.responseJSON;
+        request = request.responseJSON;
       //In request c'è la risposta alla fetch della repository
   
       //link per informazioni sui collaboratori
