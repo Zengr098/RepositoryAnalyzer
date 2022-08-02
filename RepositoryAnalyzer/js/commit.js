@@ -19,24 +19,12 @@ function fetchRepository(ownerName, repositoryName){
         var commits_url = request['commits_url'];
         commits_url = commits_url.slice(0, -6);
 
-        getCommits(contributors_url, commits_url);
-    });
-}
-
-//Funzione che accede alle informazioni di ogni singolo commit
-function getCommits(contributors_url, commits_url){
-    var requestCommit = $.get(commits_url, function () {}).done(function () {
-        requestCommit = requestCommit.responseJSON;
-        var commitsSha = [];
-            
-        for(var j=0; j < requestCommit.length; j++)
-            commitsSha.push(requestCommit[j].url);
-        getContributors(contributors_url, commitsSha);
+        getContributors(contributors_url, commits_url);
     });
 }
 
 //Funzione che mette i contributors e i commit in un array
-function getContributors(contributors_url, commitsSha){
+function getContributors(contributors_url, commits_url){
     var request = $.get(contributors_url, function () {}).done(function () {
         request = request.responseJSON;
         var contributors = [];
@@ -52,36 +40,54 @@ function getContributors(contributors_url, commitsSha){
             };
             contributors.push(contributor);
         }
-        
-        //richiesta da fixare
-        var requestCommit = $.get(commitsSha, function () {}).done(function () {
-            requestCommit = requestCommit.responseJSON;
-            var commits = [];
-                
-            for(var j=0; j < requestCommit.length; j++){
-                /*var name = requestCommit[j].committer.login;
-                var url = requestCommit[j].url;
-                var total = requestCommit[j].stats.total;
-                var embedded = requestCommit[j].stats.additions;
-                var removed = requestCommit[j].stats.deletions;
-            
-                var commit = {
-                    author: name,
-                    url: url,
-                    total: total,
-                    embedded: embedded,
-                    removed: removed
-                };
-                
-                commits.push(commit);*/
-            }
-            //updateCodeLine(contributors, commits);
-        });
+        getCommits(contributors, commits_url);
     });
 }
 
+//Funzione che accede alle informazioni di ogni singolo commit
+function getCommits(contributors, commits_url){
+    var request = $.get(commits_url, function () {}).done(function () {
+        request = request.responseJSON;
+        var array = [];
+            
+        for(var i=0; i < request.length; i++){
+            array.push(request[i].url);
+        }
+        fetchCommits(contributors, array);
+    });
+}
+    
+function fetchCommits(contributors, array){
+    for(var i=0; i<array.length; i++){
+        var name = array[i].name;
+    }
+}
+
+/*var request = $.get(commitsSha, function () {}).done(function () {
+        request = request.responseJSON;
+        var commits = [];
+    
+        for(var i = 0; i < request.length; i++){
+            var name = requestCommit[i].committer.login;
+            var url = requestCommit[i].url;
+            var total = requestCommit[i].stats.total;
+            var embedded = requestCommit[i].stats.additions;
+            var removed = requestCommit[i].stats.deletions;
+            
+            var commit = {
+                author: name,
+                url: url,
+                total: total,
+                embedded: embedded,
+                removed: removed
+            };
+            commits.push(commit);
+        }
+        updateInformation(contributors, commits);
+    });*/
+
 //Funzione che prende le linee di codice di ogni contributors
-function updateCodeLine(contributors, commits){
+function updateInformation(contributors, commits){
     for(var i=0; i<commits.length; i++){
         for(var j=0; j<contributors.length; j++){
             if(commits[i].author == contributors[j].name){
