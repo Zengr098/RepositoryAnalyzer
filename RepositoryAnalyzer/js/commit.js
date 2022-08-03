@@ -17,7 +17,7 @@ function fetchRepository(ownerName, repositoryName){
 
         var contributors_url = request['contributors_url'];
         var commits_url = request['commits_url'];
-        commits_url = commits_url.slice(0, -6);
+        commits_url = commits_url.slice(0, -6); 
 
         getContributors(contributors_url, commits_url);
     });
@@ -46,6 +46,7 @@ function getContributors(contributors_url, commits_url){
 
 //Funzione che accede alle informazioni di ogni singolo commit
 function getCommits(contributors, commits_url){
+<<<<<<< HEAD
     var request = $.get(commits_url, function () {}).done(function () {
         request = request.responseJSON;
         var url = [];
@@ -77,11 +78,54 @@ function fetchCommits(contributors, url){
             };
             
             commits.push(commit);
+=======
+
+    var commit = [];
+
+    for(var i = 0; i < commits_url.length; i++){
+        var request = $.get(commits_url[i], function () {}).done(function () {
+            request = request.responseJSON;
+            var array = [];
+            array.push(request.sha);
+
+            //fetchCommits(contributors, array);
+>>>>>>> 9938ad3276fba310f0cb9209e9e32992f3b47a2f
         });
         setTimeout(500);
     }
+<<<<<<< HEAD
     //fetchCommits(contributors, commit);
 }
+=======
+}
+
+//Funzione
+/*function fetchCommits(contributors, array){
+    var commits = [];
+    for(var j = 0; j < array.length; j++){
+        var request = $.get(array[j], function () {}).done(function () {
+            request = request.responseJSON;
+             
+            for(var i=0; i < request.length; i++){
+                var author = request[i].committer.login;
+                var total = request[i].stats.total;
+                var additions = request[i].stats.additions;
+                var deletions = request[i].stats.deletions;
+
+                var commit = {
+                    author: author,
+                    total: total,
+                    additions: additions,
+                    deletions: deletions
+                }
+
+                commits.push(commit);
+            }
+        });
+    }
+    updateInformation(contributors, commits);
+}*/
+>>>>>>> 9938ad3276fba310f0cb9209e9e32992f3b47a2f
 
 //Funzione che prende le linee di codice di ogni contributors
 /*function updateInformation(contributors, commits){
