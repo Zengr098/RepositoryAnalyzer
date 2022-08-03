@@ -51,40 +51,29 @@ function getCommits(contributors, commits_url){
         var array = [];
             
         for(var i=0; i < request.length; i++){
-            array.push(request[i].url);
+            var commit = request[i];
+            array.push(commit);
         }
         fetchCommits(contributors, array);
     });
 }
-    
-function fetchCommits(contributors, array){
-    for(var i=0; i<array.length; i++){
-        var name = array[i].name;
-    }
-}
 
-/*var request = $.get(commitsSha, function () {}).done(function () {
-        request = request.responseJSON;
-        var commits = [];
-    
-        for(var i = 0; i < request.length; i++){
-            var name = requestCommit[i].committer.login;
-            var url = requestCommit[i].url;
-            var total = requestCommit[i].stats.total;
-            var embedded = requestCommit[i].stats.additions;
-            var removed = requestCommit[i].stats.deletions;
-            
+/*function fetchCommits(contributors, array){
+    for(var i=0; i<array.length; i++){
+        var request = $.get(array[i], function () {}).done(function () {
+            request = request.responseJSON;
+                
             var commit = {
-                author: name,
-                url: url,
-                total: total,
-                embedded: embedded,
-                removed: removed
+                name: 0,
+                embedded: 0,
+                removed: 0,
+                total: 0
             };
-            commits.push(commit);
-        }
-        updateInformation(contributors, commits);
-    });*/
+            
+            fetchCommits(contributors, array);
+        });
+    }
+}*/
 
 //Funzione che prende le linee di codice di ogni contributors
 function updateInformation(contributors, commits){
