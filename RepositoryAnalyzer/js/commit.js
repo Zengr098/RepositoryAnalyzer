@@ -48,35 +48,43 @@ function getContributors(contributors_url, commits_url){
 function getCommits(contributors, commits_url){
     var request = $.get(commits_url, function () {}).done(function () {
         request = request.responseJSON;
-        var array = [];
+        var url = [];
             
         for(var i=0; i < request.length; i++){
-            var commit = request[i];
-            array.push(commit);
+            var commit = request[i].url;
+            url.push(commit);
         }
-        fetchCommits(contributors, array);
+        fetchCommits(contributors, url);
     });
 }
 
-/*function fetchCommits(contributors, array){
-    for(var i=0; i<array.length; i++){
-        var request = $.get(array[i], function () {}).done(function () {
+function fetchCommits(contributors, url){
+    var commits = [];
+    for(var i=0; i<url.length; i++){
+        var request = $.get(url[i], function () {}).done(function () {
             request = request.responseJSON;
                 
+            var name = request.commit.author.name;
+            var total = request.stats.total;
+            var additions = request.stats.additions;
+            var deletions = request.stats.deletions;
+            
             var commit = {
-                name: 0,
-                embedded: 0,
-                removed: 0,
-                total: 0
+                name: name,
+                total: total,
+                additions: additions,
+                deletions: deletions
             };
             
-            fetchCommits(contributors, array);
+            commits.push(commit);
         });
+        setTimeout(500);
     }
-}*/
+    //fetchCommits(contributors, commit);
+}
 
 //Funzione che prende le linee di codice di ogni contributors
-function updateInformation(contributors, commits){
+/*function updateInformation(contributors, commits){
     for(var i=0; i<commits.length; i++){
         for(var j=0; j<contributors.length; j++){
             if(commits[i].author == contributors[j].name){
@@ -104,4 +112,4 @@ function showCodeLines(contributors) {
 
     pembedded.remove();
     premoved.remove();
-}
+}*/
