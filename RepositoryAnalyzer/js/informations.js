@@ -82,34 +82,30 @@ function getCommits(contributors, commits_url){
 
 //Funzioone che effettua la richiesta per prendere le informazioni di un singolo commit
 function requestCommit(sha){
-    var object;
     var request = $.get(sha, function () {}).done(function () {
         request = request.responseJSON;
-            
+        
         var name = request.commit.author.name;
         var total = request.stats.total;
-        var additions = request.stats.additions;
+        var additions = request.stats.additions;            
         var deletions = request.stats.deletions;
-        
-        var commit = {
+
+        return {
             name: name,
             total: total,
             additions: additions,
             deletions: deletions
         };
-        
-        object = commit;
     });
-
-    return object;
+    return request;
 }
 
 //Funzione che salva i dati di tutti i commit in un array
-function fetchCommits(contributors, url){
+async function fetchCommits(contributors, url){
     var commits = [];
     for(var i=0; i<url.length; i++){
         var sha = url[i];
-        var commit = requestCommit(sha);
+        const commit = await requestCommit(sha);
         commits.push(commit);
     }
     updateInformation(contributors, commits);
