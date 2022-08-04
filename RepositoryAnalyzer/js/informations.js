@@ -55,7 +55,8 @@ function getContributors(contributors_url, commits_url){
                 total: 0,
                 additions: 0,
                 deletions: 0,
-                lineforcommit: 0
+                lineforcommit: 0,
+                nfile: 0
             };
 
             data.push(image);
@@ -99,12 +100,14 @@ async function fetchCommits(contributors, url){
         var total = request.stats.total;
         var additions = request.stats.additions;            
         var deletions = request.stats.deletions;
+        var nfile = request.files.length;
 
         var commit = {
             name: name,
             total: total,
             additions: additions,
-            deletions: deletions
+            deletions: deletions,
+            nfile: nfile
         }
 
         commits.push(commit);
@@ -119,21 +122,25 @@ function updateInformation(contributors, commits){
             var total = contributors[j].total;
             var additions = contributors[j].additions;
             var deletions = contributors[j].deletions;
+            var nfile = contributors[j].nfile;
 
             var newtotal = commits[i].total;
             var newadditions = commits[i].additions;
             var newdeletions = commits[i].deletions;
+            var newfile = commits[i].nfile;
 
             if(commits[i].name == contributors[j].name){
                 contributors[j].total = total + newtotal;
                 contributors[j].additions = additions + newadditions;
                 contributors[j].deletions = deletions + newdeletions;
+                contributors[j].nfile = nfile + newfile;
             }
         }
     }
 
     for (var k=0; k<contributors.length; k++){
         contributors[k].lineforcommit = (contributors[k].additions/contributors[k].ncommit).toFixed(3);
+        contributors[k].nfile = (contributors[k].nfile/contributors[k].ncommit).toFixed(3);
     }
     showCodeLines(contributors);
 }
@@ -147,6 +154,7 @@ function showCodeLines(contributors) {
     pembedded = div.children(".embedded")[0];
     premoved = div.children(".removed")[0];
     plineforcommit = div.children(".lineforcommit")[0];
+    pnfile = div.children(".nfile")[0];
 
     contributors.forEach(c => {
         newname = pname.cloneNode(true);
@@ -172,6 +180,10 @@ function showCodeLines(contributors) {
         newlineforcommit = plineforcommit.cloneNode(true);
         newlineforcommit.textContent = "Code lines added for commit: "+c.lineforcommit;
         div.append(newlineforcommit);
+
+        newfile = pnfile.cloneNode(true);
+        newfile.textContent = "File changed for commit: "+c.nfile;
+        div.append(newfile);
     });
 
     pname.remove();
@@ -180,6 +192,7 @@ function showCodeLines(contributors) {
     pembedded.remove();
     premoved.remove();
     plineforcommit.remove();
+    pnfile.remove();
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
