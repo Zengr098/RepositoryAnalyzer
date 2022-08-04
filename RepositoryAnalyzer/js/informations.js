@@ -54,7 +54,8 @@ function getContributors(contributors_url, commits_url){
                 ncommit: ncommit,
                 total: 0,
                 additions: 0,
-                deletions: 0
+                deletions: 0,
+                lineforcommit: 0
             };
 
             data.push(image);
@@ -80,7 +81,8 @@ function getCommits(contributors, commits_url){
 }
 
 //Funzioone che effettua la richiesta per prendere le informazioni di un singolo commit
-function request(commits, sha){
+function requestCommit(sha){
+    var object;
     var request = $.get(sha, function () {}).done(function () {
         request = request.responseJSON;
             
@@ -96,8 +98,10 @@ function request(commits, sha){
             deletions: deletions
         };
         
-        return commits.push(commit);
+        object = commit;
     });
+
+    return object;
 }
 
 //Funzione che salva i dati di tutti i commit in un array
@@ -105,7 +109,8 @@ function fetchCommits(contributors, url){
     var commits = [];
     for(var i=0; i<url.length; i++){
         var sha = url[i];
-        commits = request(commits, sha);
+        var commit = requestCommit(sha);
+        commits.push(commit);
     }
     updateInformation(contributors, commits);
 }
@@ -121,6 +126,10 @@ function updateInformation(contributors, commits){
             }
         }
     }
+
+    for (var k=0; k<contributors.length; k++){
+        contributors[k].lineforcommit = contributors[k].additions/contributors[k].ncommit;
+    }
     showCodeLines(contributors);
 }
 
@@ -132,6 +141,7 @@ function showCodeLines(contributors) {
     ptotal = div.children(".total")[0];
     pembedded = div.children(".embedded")[0];
     premoved = div.children(".removed")[0];
+    plineforcommit = div.children(".lineforcommit")[0];
 
     contributors.forEach(c => {
         newname = pname.cloneNode(true);
@@ -153,6 +163,10 @@ function showCodeLines(contributors) {
         newremoved = premoved.cloneNode(true);
         newremoved.textContent = "Removed code lines: "+c.deletions;
         div.append(newremoved);
+
+        newlineforcommit = plineforcommit.cloneNode(true);
+        newlineforcommit.textContent = "Code lines added for commit: "+c.lineforcommit;
+        div.append(newlineforcommit);
     });
 
     pname.remove();
@@ -160,6 +174,7 @@ function showCodeLines(contributors) {
     ptotal.remove();
     pembedded.remove();
     premoved.remove();
+    plineforcommit.remove();
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
