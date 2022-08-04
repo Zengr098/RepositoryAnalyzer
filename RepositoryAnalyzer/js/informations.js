@@ -84,18 +84,6 @@ function getCommits(contributors, commits_url){
 function requestCommit(sha){
     var request = $.get(sha, function () {}).done(function () {
         request = request.responseJSON;
-        
-        var name = request.commit.author.name;
-        var total = request.stats.total;
-        var additions = request.stats.additions;            
-        var deletions = request.stats.deletions;
-
-        return {
-            name: name,
-            total: total,
-            additions: additions,
-            deletions: deletions
-        };
     });
     return request;
 }
@@ -105,7 +93,20 @@ async function fetchCommits(contributors, url){
     var commits = [];
     for(var i=0; i<url.length; i++){
         var sha = url[i];
-        const commit = await requestCommit(sha);
+        const request = await requestCommit(sha);
+        
+        var name = request.committer.login;
+        var total = request.stats.total;
+        var additions = request.stats.additions;            
+        var deletions = request.stats.deletions;
+
+        var commit = {
+            name: name,
+            total: total,
+            additions: additions,
+            deletions: deletions
+        }
+
         commits.push(commit);
     }
     updateInformation(contributors, commits);
@@ -115,16 +116,24 @@ async function fetchCommits(contributors, url){
 function updateInformation(contributors, commits){
     for(var i=0; i<commits.length; i++){
         for(var j=0; j<contributors.length; j++){
+            var total = contributors[j].total;
+            var additions = contributors[j].additions;
+            var deletions = contributors[j].deletions;
+
+            var newtotal = commits[i].total;
+            var newadditions = commits[i].additions;
+            var newdeletions = commits[i].deletions;
+
             if(commits[i].name == contributors[j].name){
-                contributors[j].total += commits[i].total;
-                contributors[j].additions += commits[i].additions;
-                contributors[j].deletions += commits[i].deletions;
+                contributors[j].total = total + newtotal;
+                contributors[j].additions = additions + newadditions;
+                contributors[j].deletions = deletions + newdeletions;
             }
         }
     }
 
     for (var k=0; k<contributors.length; k++){
-        contributors[k].lineforcommit = contributors[k].additions/contributors[k].ncommit;
+        contributors[k].lineforcommit = (contributors[k].additions/contributors[k].ncommit).toFixed(3);
     }
     showCodeLines(contributors);
 }
