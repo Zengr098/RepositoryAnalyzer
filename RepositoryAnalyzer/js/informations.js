@@ -189,6 +189,9 @@ function showInformations(contributors) {
     premoved = div.children(".removed")[0];
     plineforcommit = div.children(".lineforcommit")[0];
     pnfile = div.children(".nfile")[0];
+    popen = div.children(".open")[0];
+    pclose = div.children(".close")[0];
+
 
     contributors.forEach(c => {
         newname = pname.cloneNode(true);
@@ -218,6 +221,14 @@ function showInformations(contributors) {
         newfile = pnfile.cloneNode(true);
         newfile.textContent = "File changed for commit: "+c.nfile;
         div.append(newfile);
+
+        newopen = popen.cloneNode(true);
+        newopen.textContent = "Number of open issues: "+c.openissue;
+        div.append(newopen);
+
+        newclose = pclose.cloneNode(true);
+        newclose.textContent = "Number of close issue: "+c.closedissue;
+        div.append(newclose);
     });
 
     pname.remove();
@@ -227,6 +238,8 @@ function showInformations(contributors) {
     premoved.remove();
     plineforcommit.remove();
     pnfile.remove();
+    popen.remove();
+    pclose.remove();
 }
 
 // Funzione che mostra l'immagine dello sviluppatore

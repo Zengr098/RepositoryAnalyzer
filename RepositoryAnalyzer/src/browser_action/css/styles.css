@@ -11533,7 +11533,7 @@ html {
   height: 100%;
   width: 100%;
   background-color: #1abc9c;
-  animation: fill-bar 5.5s;
+  animation: fill-bar 9s;
 }
 
 @keyframes fill-bar {
