@@ -11513,10 +11513,15 @@ html {
 
 .containerContributors{
   display: inline-block;
-  border: 1px solid black;
+  border: 6px solid #1abc9c;
   margin: 1rem;
   padding: 2rem 2rem;
   text-align: center;
+  border-radius: 0.9%;
+}
+
+.containerContributors  h6{
+  border: 3px solid #1abc9c;
 }
 
 
@@ -11534,6 +11539,7 @@ html {
   width: 100%;
   background-color: #1abc9c;
   animation: fill-bar 9s;
+  text-align: center;
 }
 
 @keyframes fill-bar {
