@@ -18,15 +18,25 @@ function fetchRepository(ownerName, repositoryName){
         var contributors_url = request['contributors_url'];
         var commits_url = request['commits_url'];
         var issues_url = requestURL + "/issues/events";
-        commits_url = commits_url.slice(0, -6); 
+        commits_url = commits_url.slice(0, -6);
 
-        showRepoName(request);
+        showRepoInfo(request);
         getContributors(contributors_url, commits_url, issues_url);
     });
 }
 
-// Funzione che mostra il nome della repository
-function showRepoName(request) {
+// Funzione che mostra le informazioni sulla repository
+function showRepoInfo(request) {
+    var createYear = request.created_at.slice(0, -16);
+    var createMonth = request.created_at.slice(5, 7);
+    var createDay = request.created_at.slice(8, -10);
+    var createDate = createDay+"/"+createMonth+"/"+createYear;
+
+    var updateYear = request.updated_at.slice(0, -16);
+    var updateMonth = request.updated_at.slice(5, 7);
+    var updateDay = request.updated_at.slice(8, -10);
+    var updateDate = updateDay+"/"+updateMonth+"/"+updateYear;
+
     div = $(".repoName");
     nameRepo = request.name;
     nameRepo.textContent = request.name;
@@ -36,6 +46,16 @@ function showRepoName(request) {
     description = request.description;
     description.textContent = request.description;
     div.append(description);
+
+    div = $(".create");
+    create = createDate;
+    create.textContent = createDate;
+    div.append(create);
+
+    div = $(".update");
+    update = updateDate;
+    update.textContent = updateDate;
+    div.append(update);
 }
 
 //Funzione che mette i contributors e i commit in un array
@@ -59,7 +79,9 @@ function getContributors(contributors_url, commits_url, issues_url){
                 lineforcommit: 0,
                 nfile: 0,
                 openissue: 0,
-                closedissue: 0
+                closedissue: 0,
+                contributepercentage: 0,
+                bugpercentage: 0
             };
 
             data.push(image);
@@ -70,6 +92,7 @@ function getContributors(contributors_url, commits_url, issues_url){
     });
 }
 
+//Funzione che accede alle informazioni di ogni singola issue
 function fetchIssues(contributors, commits_url, issues_url){
     var request = $.get(issues_url, function () {}).done(function () {
         request = request.responseJSON;
@@ -172,9 +195,19 @@ function updateInformation(contributors, commits, issues){
         }
     }
 
+    var total = 0;
+    var bug = 0;
     for (var k=0; k<contributors.length; k++){
         contributors[k].lineforcommit = (contributors[k].additions/contributors[k].ncommit).toFixed(2);
         contributors[k].nfile = (contributors[k].nfile/contributors[k].ncommit).toFixed(2);
+
+        total += contributors[k].additions;
+        bug += contributors[k].closedissue;
+    }
+
+    for (var h=0; h<contributors.length; h++){
+        contributors[h].contributepercentage = ((contributors[h].additions * 100) / total).toFixed(2);
+        contributors[h].bugpercentage = ((contributors[h].closedissue * 100) / bug).toFixed(2);
     }
     showInformations(contributors);
 }
@@ -191,6 +224,8 @@ function showInformations(contributors) {
     pnfile = div.children(".nfile")[0];
     popen = div.children(".open")[0];
     pclose = div.children(".close")[0];
+    pcontribute = div.children(".contribute")[0];
+    pbug = div.children(".bug")[0];
 
 
     contributors.forEach(c => {
@@ -229,6 +264,14 @@ function showInformations(contributors) {
         newclose = pclose.cloneNode(true);
         newclose.textContent = "Number of close issue: "+c.closedissue;
         div.append(newclose);
+
+        newcontribute = pcontribute.cloneNode(true);
+        newcontribute.textContent = "Contribute percentage: "+c.contributepercentage+"%";
+        div.append(newcontribute);
+
+        newbug = pbug.cloneNode(true);
+        newbug.textContent = "Issues fixed percentage: "+c.bugpercentage+"%";
+        div.append(newbug);
     });
 
     pname.remove();
@@ -240,6 +283,8 @@ function showInformations(contributors) {
     pnfile.remove();
     popen.remove();
     pclose.remove();
+    pcontribute.remove();
+    pbug.remove();
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
