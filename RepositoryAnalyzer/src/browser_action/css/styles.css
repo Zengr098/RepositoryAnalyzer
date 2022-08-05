@@ -11510,3 +11510,33 @@ html {
 .copyright {
   background-color: #1a252f;
 }
+
+.containerContributors{
+  display: inline-block;
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+
+
+.progress {
+  margin: 50px auto;
+  padding: 2px;
+  width: 100%;
+  max-width: 500px;
+  border: 3px solid #1abc9c;
+  height: 36px;
+}
+
+.progress .progress__bar {
+  height: 100%;
+  width: 100%;
+  background-color: #1abc9c;
+  animation: fill-bar 5.5s;
+}
+
+@keyframes fill-bar {
+  from {width: 0%;}
+  to {width: 100%;}
+}
