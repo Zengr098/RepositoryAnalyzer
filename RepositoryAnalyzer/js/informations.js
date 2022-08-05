@@ -17,10 +17,11 @@ function fetchRepository(ownerName, repositoryName){
 
         var contributors_url = request['contributors_url'];
         var commits_url = request['commits_url'];
+        var issues_url = requestURL + "/issues/events";
         commits_url = commits_url.slice(0, -6); 
 
         showRepoName(request);
-        getContributors(contributors_url, commits_url);
+        getContributors(contributors_url, commits_url, issues_url);
     });
 }
 
@@ -38,7 +39,7 @@ function showRepoName(request) {
 }
 
 //Funzione che mette i contributors e i commit in un array
-function getContributors(contributors_url, commits_url){
+function getContributors(contributors_url, commits_url, issues_url){
     var request = $.get(contributors_url, function () {}).done(function () {
         request = request.responseJSON;
         var contributors = [];
@@ -56,19 +57,41 @@ function getContributors(contributors_url, commits_url){
                 additions: 0,
                 deletions: 0,
                 lineforcommit: 0,
-                nfile: 0
+                nfile: 0,
+                openissue: 0,
+                closedissue: 0
             };
 
             data.push(image);
             contributors.push(contributor);
         }
-        getCommits(contributors, commits_url);
+        fetchIssues(contributors, commits_url, issues_url);
         showImageContributors(data);
     });
 }
 
+function fetchIssues(contributors, commits_url, issues_url){
+    var request = $.get(issues_url, function () {}).done(function () {
+        request = request.responseJSON;
+        var issues = [];
+    
+        for(var i = 0; i < request.length; i++){
+            var open = request[i].issue.user.login;
+            var close = request[i].actor.login;
+            
+            var issue = {
+                open: open,
+                close: close
+            };
+
+            issues.push(issue);
+        }
+        getCommits(contributors, commits_url, issues);
+    });
+}
+
 //Funzione che accede alle informazioni di ogni singolo commit
-function getCommits(contributors, commits_url){
+function getCommits(contributors, commits_url, issues){
     var request = $.get(commits_url, function () {}).done(function () {
         request = request.responseJSON;
         var url = [];
@@ -77,7 +100,7 @@ function getCommits(contributors, commits_url){
             var commit = request[i].url;
             url.push(commit);
         }
-        fetchCommits(contributors, url);
+        fetchCommits(contributors, url, issues);
     });
 }
 
@@ -90,7 +113,7 @@ function requestCommit(sha){
 }
 
 //Funzione che salva i dati di tutti i commit in un array
-async function fetchCommits(contributors, url){
+async function fetchCommits(contributors, url, issues){
     var commits = [];
     for(var i=0; i<url.length; i++){
         var sha = url[i];
@@ -112,11 +135,11 @@ async function fetchCommits(contributors, url){
 
         commits.push(commit);
     }
-    updateInformation(contributors, commits);
+    updateInformation(contributors, commits, issues);
 }
 
 //Funzione che prende le linee di codice di ogni contributors
-function updateInformation(contributors, commits){
+function updateInformation(contributors, commits, issues){
     for(var i=0; i<commits.length; i++){
         for(var j=0; j<contributors.length; j++){
             var total = contributors[j].total;
@@ -138,15 +161,26 @@ function updateInformation(contributors, commits){
         }
     }
 
-    for (var k=0; k<contributors.length; k++){
-        contributors[k].lineforcommit = (contributors[k].additions/contributors[k].ncommit).toFixed(3);
-        contributors[k].nfile = (contributors[k].nfile/contributors[k].ncommit).toFixed(3);
+    for(var t=0; t<issues.length; t++){
+        for(var l=0; l<contributors.length; l++){
+            if(issues[t].open == contributors[l].name){
+                contributors[l].openissue ++;
+            }
+            else if(issues[t].close == contributors[l].name){
+                contributors[l].closedissue ++;
+            }
+        }
     }
-    showCodeLines(contributors);
+
+    for (var k=0; k<contributors.length; k++){
+        contributors[k].lineforcommit = (contributors[k].additions/contributors[k].ncommit).toFixed(2);
+        contributors[k].nfile = (contributors[k].nfile/contributors[k].ncommit).toFixed(2);
+    }
+    showInformations(contributors);
 }
 
-// Funzione che mostra le linee di codice totali, inserite e rimosse
-function showCodeLines(contributors) {
+// Funzione che mostra a video tutte le informazioni
+function showInformations(contributors) {
     div = $("#containerContributors");
     pname = div.children(".username")[0];
     pcommit = div.children(".commit")[0];
