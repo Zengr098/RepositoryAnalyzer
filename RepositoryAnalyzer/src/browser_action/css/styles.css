@@ -11511,20 +11511,6 @@ html {
   background-color: #1a252f;
 }
 
-.containerContributors{
-  display: inline-block;
-  border: 6px solid #1abc9c;
-  margin: 1rem;
-  padding: 2rem 2rem;
-  text-align: center;
-  border-radius: 0.9%;
-}
-
-.containerContributors  h6{
-  border: 3px solid #1abc9c;
-}
-
-
 .progress {
   margin: 50px auto;
   padding: 2px;
@@ -11546,3 +11532,16 @@ html {
   from {width: 0%;}
   to {width: 100%;}
 }
+
+.containerTotal {
+  display:table;
+  padding: 3px;
+}
+.containerContributors1 {
+  display: table-cell;
+  padding: 3px;
+}
+.containerContributors {
+  display: table-cell;
+}
+

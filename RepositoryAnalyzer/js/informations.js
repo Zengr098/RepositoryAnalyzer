@@ -227,7 +227,6 @@ function showInformations(contributors) {
     pcontribute = div.children(".contribute")[0];
     pbug = div.children(".bug")[0];
 
-
     contributors.forEach(c => {
         newname = pname.cloneNode(true);
         newname.textContent = "Developer username: "+c.name;
@@ -290,10 +289,10 @@ function showInformations(contributors) {
 // Funzione che mostra l'immagine dello sviluppatore
 function showImageContributors(data) {
     for(var i=0; i<data.length; i++){
-        var container = document.getElementById("containerContributors");
+        var container = document.getElementById("containerContributors1");
         
         var containerHtml="";
-        containerHtml += "<img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
+        containerHtml += "<br><img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
 
         container.innerHTML = container.innerHTML + containerHtml;
     }
