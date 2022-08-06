@@ -291,8 +291,8 @@ function showImageContributors(data) {
     for(var i=0; i<data.length; i++){
         var container = document.getElementById("containerContributors1");
         
-        var containerHtml="";
-        containerHtml += "<br><img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
+        var containerHtml="<br>";
+        containerHtml += "<img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
 
         container.innerHTML = container.innerHTML + containerHtml;
     }
