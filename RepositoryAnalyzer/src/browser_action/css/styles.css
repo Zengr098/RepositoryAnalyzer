@@ -11578,3 +11578,21 @@ html {
   color: white;
   text-align: center;
 }
+
+.logoMain{
+  margin: 2rem;
+  margin-bottom: 5rem;
+  width: 40rem;
+  height: auto;
+}
+
+.divCenter {
+  margin: auto;
+  width: 50%;
+  border: 3px solid #1abc9c;
+  padding: 1px;
+}
+
+.colorGreen{
+  color: #1abc9c;
+}
