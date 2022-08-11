@@ -214,76 +214,37 @@ function updateInformation(contributors, commits, issues){
 
 // Funzione che mostra a video tutte le informazioni
 function showInformations(contributors) {
-    div = $("#containerContributors");
-    pname = div.children(".username")[0];
-    pcommit = div.children(".commit")[0];
-    ptotal = div.children(".total")[0];
-    pembedded = div.children(".embedded")[0];
-    premoved = div.children(".removed")[0];
-    plineforcommit = div.children(".lineforcommit")[0];
-    pnfile = div.children(".nfile")[0];
-    popen = div.children(".open")[0];
-    pclose = div.children(".close")[0];
-    pcontribute = div.children(".contribute")[0];
-    pbug = div.children(".bug")[0];
+    div = $("#containerParent");
 
-    contributors.forEach(c => {
-        newname = pname.cloneNode(true);
-        newname.textContent = "Developer username: "+c.name;
-        div.append(newname);
-        
-        newcommit = pcommit.cloneNode(true);
-        newcommit.textContent = "Number of commit: "+c.ncommit;
-        div.append(newcommit);
-        
-        newtotal = ptotal.cloneNode(true);
+    for(var i=0; i<contributors.length; i++){
+        divClone = div.cloneNode(true);
+        var id = "containerParent-"+i;
+        divClone.setAttribute("id", id);
+
+        pname = divClone.children(".username")[0];
+        pcommit = divClone.children(".commit")[0];
+        ptotal = divClone.children(".total")[0];
+        pembedded = divClone.children(".embedded")[0];
+        premoved = divClone.children(".removed")[0];
+        plineforcommit = divClone.children(".lineforcommit")[0];
+        pnfile = divClone.children(".nfile")[0];
+        popen = divClone.children(".open")[0];
+        pclose = divClone.children(".close")[0];
+        pcontribute = divClone.children(".contribute")[0];
+        pbug = divClone.children(".bug")[0];
+
+        pname.textContent = "Developer username: "+c.name;
+        pcommit.textContent = "Number of commit: "+c.ncommit;
         newtotal.textContent = "Total code lines: "+c.total;
-        div.append(newtotal);
-
-        newembedded = pembedded.cloneNode(true);
         newembedded.textContent = "Added code lines: "+c.additions;
-        div.append(newembedded);
-        
-        newremoved = premoved.cloneNode(true);
         newremoved.textContent = "Removed code lines: "+c.deletions;
-        div.append(newremoved);
-
-        newlineforcommit = plineforcommit.cloneNode(true);
         newlineforcommit.textContent = "Code lines added for commit: "+c.lineforcommit;
-        div.append(newlineforcommit);
-
-        newfile = pnfile.cloneNode(true);
         newfile.textContent = "File changed for commit: "+c.nfile;
-        div.append(newfile);
-
-        newopen = popen.cloneNode(true);
         newopen.textContent = "Number of open issues: "+c.openissue;
-        div.append(newopen);
-
-        newclose = pclose.cloneNode(true);
         newclose.textContent = "Number of close issue: "+c.closedissue;
-        div.append(newclose);
-
-        newcontribute = pcontribute.cloneNode(true);
         newcontribute.textContent = "Contribute percentage: "+c.contributepercentage+"%";
-        div.append(newcontribute);
-
-        newbug = pbug.cloneNode(true);
         newbug.textContent = "Issues fixed percentage: "+c.bugpercentage+"%";
-        div.append(newbug);
-    });
-
-    pname.remove();
-    pcommit.remove();
-    ptotal.remove();
-    pembedded.remove();
-    premoved.remove();
-    plineforcommit.remove();
-    pnfile.remove();
-    popen.remove();
-    pclose.remove();
-    pcontribute.remove();
-    pbug.remove();
+    }
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
