@@ -11540,10 +11540,12 @@ html {
   padding: 3px;
   text-align: center;
 }
-.containerContributors1 {
+
+.containerImages {
   display: table-cell;
   padding: 3px;
 }
+
 .containerContributors {
   display: table-cell;
 }
