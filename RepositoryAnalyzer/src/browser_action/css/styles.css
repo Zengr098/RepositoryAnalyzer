@@ -11535,7 +11535,7 @@ html {
   to {width: 100%;}
 }
 
-.containerTotal {
+.containerParent {
   display:table;
   padding: 3px;
   text-align: center;

@@ -213,10 +213,10 @@ function updateInformation(contributors, commits, issues, data){
 
 // Funzione che mostra a video tutte le informazioni
 function showInformations(contributors, data) {
-    var div = document.getElementById("containerParent");
+    var container = document.getElementById("containerParent");
 
     for(var i=0; i<contributors.length; i++){
-        var divClone = div.cloneNode(true);
+        var divClone = container.cloneNode(true);
         var id = "containerParent-" + i;
         divClone.id = id;
 
@@ -249,9 +249,9 @@ function showInformations(contributors, data) {
         pcontribute.textContent = "Contribute percentage: "+contributors[i].contributepercentage+"%";
         pbug.textContent = "Issues fixed percentage: "+contributors[i].bugpercentage+"%";
 
-        div.append(divClone);
+        container.append(divClone);
     }
-    //div.remove();
+    //container.remove();
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
