@@ -11622,3 +11622,15 @@ button:hover::after{
   opacity: 1;
   transform: translateY(5px);
 }
+
+div.row{
+  margin-top: 50px;
+}
+
+.div.mb-lg-0{
+  margin: auto;
+  width: 50%;
+  border: 3px solid #fff;
+  padding: 1px;
+  
+}

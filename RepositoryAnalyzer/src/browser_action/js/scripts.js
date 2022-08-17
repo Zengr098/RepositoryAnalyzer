@@ -44,3 +44,15 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+function setInvisible(){
+    var elem = document.getElementById("progressBar");
+    elem.style.display = "none";
+}
+
+setTimeout(() => {
+    const elem = document.getElementById("progressBar");
+
+    elem.style.display = "none";
+
+  }, 9000);

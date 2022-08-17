@@ -249,19 +249,19 @@ function showInformations(contributors) {
         div.append(newremoved);
 
         newlineforcommit = plineforcommit.cloneNode(true);
-        newlineforcommit.textContent = "Code lines added for commit: "+c.lineforcommit;
+        newlineforcommit.textContent = "Average code lines added for commit: "+c.lineforcommit;
         div.append(newlineforcommit);
 
         newfile = pnfile.cloneNode(true);
-        newfile.textContent = "File changed for commit: "+c.nfile;
+        newfile.textContent = "Average file changed for commit: "+c.nfile;
         div.append(newfile);
 
         newopen = popen.cloneNode(true);
-        newopen.textContent = "Number of open issues: "+c.openissue;
+        newopen.textContent = "Number of opened issues: "+c.openissue;
         div.append(newopen);
 
         newclose = pclose.cloneNode(true);
-        newclose.textContent = "Number of close issue: "+c.closedissue;
+        newclose.textContent = "Number of closed issue: "+c.closedissue;
         div.append(newclose);
 
         newcontribute = pcontribute.cloneNode(true);

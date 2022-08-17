@@ -32,6 +32,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Contributors</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#metrics">Metrics</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
                     </ul>
                 </div>
@@ -67,7 +68,7 @@
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div> 
                 </div>
 
-                <div class="progress"> 
+                <div id ="progressBar"class="progress"> 
                     <div class="progress__bar" style="color: #2c3e50;"><h5>Data processing</h5></div>
                 </div>
 
@@ -87,6 +88,7 @@
                     <button data-title="This metric indicates the actual contribution that each individual developer has made to the project."></i></button>
                     <button data-title="This metric indicates the percentage of closed and resolved issues."></i></button>-->
                     
+                    
 
                     <!-- Portfolio Items-->
                     <div id="containerContributors" class="containerContributors col-lg-6 mb-5">
@@ -105,6 +107,65 @@
                 </div>
 
         </section>
+
+
+
+        <footer id="metrics" class="footer text-center">
+            <div class="container">
+
+                <h2 class="page-section-heading text-center text-uppercase text-white">Metrics</h2>
+
+                <div class="row">
+                    <div class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="colorGreen" class="mb-4">Number of commits<h4>This metric indicates the total number of commit.</h4></h3>
+                    </div>
+
+                    <div id="total" class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="commit colorGreen" class="mb-4">Total code lines<h4>This metric indicates the added code lines on the last 30 commits and repository issues.</h4></h3>
+                    </div>
+
+                    <div id="total" class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="commit colorGreen" class="mb-4">Added code lines<h4>This metric indicates the added code lines on the last 30 commits and repository issues.</h4></h3>
+                    </div>  
+                
+                    <div class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="colorGreen" class="mb-4">Removed code lines<h4>This metric indicates the removed code lines on the last 30 commits and repository issues.</h4></h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="total" class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="commit colorGreen" class="mb-4">Code lines added for commit<h4>This metric indicates the average of code lines added for commit.</h4></h3>
+                    </div>
+
+                    <div id="total" class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="commit colorGreen" class="mb-4">File changed for commit<h4>This metric indicates the average of file change for commit.</h4></h3>
+                    </div>  
+                
+                    <div class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="colorGreen" class="mb-4">Number of opened issues<h4>This metric indicates the number of opened issues in the project.</h4></h3>
+                    </div>
+
+                    <div id="total" class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="commit colorGreen" class="mb-4">Number of closed issues<h4>This metric indicates the number of closed issues in the project.</h4></h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="total" class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="commit colorGreen" class="mb-4">Contribute percentage<h4>This metric indicates the actual contribution that each individual developer has made to the project.</h4></h3>
+                    </div>  
+
+                    <div class="col-lg-3 mb-5 mb-lg-0">
+                        <h3 class="colorGreen" class="mb-4">Issues fixed percentage<h4>This metric indicates the percentage of closed and resolved issues.</h4></h3>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+
+
         <!-- About Section-->
         <section class="page-section bg-primary text-white mb-0" id="about">
             <div class="container">
