@@ -87,13 +87,12 @@ function getContributors(contributors_url, commits_url, issues_url){
             data.push(image);
             contributors.push(contributor);
         }
-        fetchIssues(contributors, commits_url, issues_url);
-        showImageContributors(data);
+        fetchIssues(contributors, commits_url, issues_url, data);
     });
 }
 
 //Funzione che accede alle informazioni di ogni singola issue
-function fetchIssues(contributors, commits_url, issues_url){
+function fetchIssues(contributors, commits_url, issues_url, data){
     var request = $.get(issues_url, function () {}).done(function () {
         request = request.responseJSON;
         var issues = [];
@@ -109,12 +108,12 @@ function fetchIssues(contributors, commits_url, issues_url){
 
             issues.push(issue);
         }
-        getCommits(contributors, commits_url, issues);
+        getCommits(contributors, commits_url, issues, data);
     });
 }
 
 //Funzione che accede alle informazioni di ogni singolo commit
-function getCommits(contributors, commits_url, issues){
+function getCommits(contributors, commits_url, issues, data){
     var request = $.get(commits_url, function () {}).done(function () {
         request = request.responseJSON;
         var url = [];
@@ -123,7 +122,7 @@ function getCommits(contributors, commits_url, issues){
             var commit = request[i].url;
             url.push(commit);
         }
-        fetchCommits(contributors, url, issues);
+        fetchCommits(contributors, url, issues, data);
     });
 }
 
@@ -136,7 +135,7 @@ function requestCommit(sha){
 }
 
 //Funzione che salva i dati di tutti i commit in un array
-async function fetchCommits(contributors, url, issues){
+async function fetchCommits(contributors, url, issues, data){
     var commits = [];
     for(var i=0; i<url.length; i++){
         var sha = url[i];
@@ -158,11 +157,11 @@ async function fetchCommits(contributors, url, issues){
 
         commits.push(commit);
     }
-    updateInformation(contributors, commits, issues);
+    updateInformation(contributors, commits, issues, data);
 }
 
 //Funzione che prende le linee di codice di ogni contributors
-function updateInformation(contributors, commits, issues){
+function updateInformation(contributors, commits, issues, data){
     for(var i=0; i<commits.length; i++){
         for(var j=0; j<contributors.length; j++){
             var total = contributors[j].total;
@@ -209,52 +208,54 @@ function updateInformation(contributors, commits, issues){
         contributors[h].contributepercentage = ((contributors[h].additions * 100) / total).toFixed(2);
         contributors[h].bugpercentage = ((contributors[h].closedissue * 100) / bug).toFixed(2);
     }
-    showInformations(contributors);
+    showInformations(contributors, data);
 }
 
 // Funzione che mostra a video tutte le informazioni
-function showInformations(contributors) {
-    div = $("#containerParent");
+function showInformations(contributors, data) {
+    var div = document.getElementById("containerParent");
 
     for(var i=0; i<contributors.length; i++){
-        divClone = div.cloneNode(true);
-        var id = "containerParent-"+i;
-        divClone.setAttribute("id", id);
+        var divClone = div.cloneNode(true);
+        var id = "containerParent-" + i;
+        divClone.id = id;
 
-        pname = divClone.children(".username")[0];
-        pcommit = divClone.children(".commit")[0];
-        ptotal = divClone.children(".total")[0];
-        pembedded = divClone.children(".embedded")[0];
-        premoved = divClone.children(".removed")[0];
-        plineforcommit = divClone.children(".lineforcommit")[0];
-        pnfile = divClone.children(".nfile")[0];
-        popen = divClone.children(".open")[0];
-        pclose = divClone.children(".close")[0];
-        pcontribute = divClone.children(".contribute")[0];
-        pbug = divClone.children(".bug")[0];
+        var divImage = divClone.getElementsByClassName("containerImages")[0];
+        showImageContributors(divImage, data[i]);
+        
+        var divContributor = divClone.getElementsByClassName("containerContributors")[0];
 
-        pname.textContent = "Developer username: "+c.name;
-        pcommit.textContent = "Number of commit: "+c.ncommit;
-        newtotal.textContent = "Total code lines: "+c.total;
-        newembedded.textContent = "Added code lines: "+c.additions;
-        newremoved.textContent = "Removed code lines: "+c.deletions;
-        newlineforcommit.textContent = "Code lines added for commit: "+c.lineforcommit;
-        newfile.textContent = "File changed for commit: "+c.nfile;
-        newopen.textContent = "Number of open issues: "+c.openissue;
-        newclose.textContent = "Number of close issue: "+c.closedissue;
-        newcontribute.textContent = "Contribute percentage: "+c.contributepercentage+"%";
-        newbug.textContent = "Issues fixed percentage: "+c.bugpercentage+"%";
+        pname = divContributor.querySelector(".username");
+        pcommit = divContributor.querySelector(".commit");
+        ptotal = divContributor.querySelector(".total");
+        pembedded = divContributor.getElementsByClassName(".embedded");
+        premoved = divContributor.querySelector(".removed");
+        plineforcommit = divContributor.querySelector(".lineforcommit");
+        pnfile = divContributor.querySelector(".nfile");
+        popen = divContributor.querySelector(".open");
+        pclose = divContributor.querySelector(".close");
+        pcontribute = divContributor.querySelector(".contribute");
+        pbug = divContributor.querySelector(".bug");
+
+        pname.textContent = "Developer username: "+ contributors[i].name;
+        pcommit.textContent = "Number of commit: "+contributors[i].ncommit;
+        ptotal.textContent = "Total code lines: "+contributors[i].total;
+        pembedded.textContent = "Added code lines: "+contributors[i].additions;
+        premoved.textContent = "Removed code lines: "+contributors[i].deletions;
+        plineforcommit.textContent = "Code lines added for commit: "+contributors[i].lineforcommit;
+        pnfile.textContent = "File changed for commit: "+contributors[i].nfile;
+        popen.textContent = "Number of open issues: "+contributors[i].openissue;
+        pclose.textContent = "Number of close issue: "+contributors[i].closedissue;
+        pcontribute.textContent = "Contribute percentage: "+contributors[i].contributepercentage+"%";
+        pbug.textContent = "Issues fixed percentage: "+contributors[i].bugpercentage+"%";
+
+        div.append(divClone);
     }
+    //div.remove();
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
-function showImageContributors(data) {
-    for(var i=0; i<data.length; i++){
-        var container = document.getElementById("containerImages");
-        
-        var containerHtml="<br>";
-        containerHtml += "<img class=\"img-fluid\" src=\""+data[i]+" alt=\"...\" \/>";
-
-        container.innerHTML = container.innerHTML + containerHtml;
-    }
+function showImageContributors(divImage, data) {
+    var containerHtml="<br><img class=\"img-fluid\" src=\""+data+" alt=\"...\" \/>";
+    divImage.innerHTML = divImage.innerHTML + containerHtml;
 }
