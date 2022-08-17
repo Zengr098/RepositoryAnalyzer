@@ -237,44 +237,6 @@ function showInformations(contributors, data) {
         pcontribute = divContributor.querySelector(".contribute");
         pbug = divContributor.querySelector(".bug");
 
-<<<<<<< HEAD
-        newlineforcommit = plineforcommit.cloneNode(true);
-        newlineforcommit.textContent = "Average code lines added for commit: "+c.lineforcommit;
-        div.append(newlineforcommit);
-
-        newfile = pnfile.cloneNode(true);
-        newfile.textContent = "Average file changed for commit: "+c.nfile;
-        div.append(newfile);
-
-        newopen = popen.cloneNode(true);
-        newopen.textContent = "Number of opened issues: "+c.openissue;
-        div.append(newopen);
-
-        newclose = pclose.cloneNode(true);
-        newclose.textContent = "Number of closed issue: "+c.closedissue;
-        div.append(newclose);
-
-        newcontribute = pcontribute.cloneNode(true);
-        newcontribute.textContent = "Contribute percentage: "+c.contributepercentage+"%";
-        div.append(newcontribute);
-
-        newbug = pbug.cloneNode(true);
-        newbug.textContent = "Issues fixed percentage: "+c.bugpercentage+"%";
-        div.append(newbug);
-    });
-
-    pname.remove();
-    pcommit.remove();
-    ptotal.remove();
-    pembedded.remove();
-    premoved.remove();
-    plineforcommit.remove();
-    pnfile.remove();
-    popen.remove();
-    pclose.remove();
-    pcontribute.remove();
-    pbug.remove();
-=======
         pname.textContent = "Developer username: "+ contributors[i].name;
         pcommit.textContent = "Number of commit: "+contributors[i].ncommit;
         ptotal.textContent = "Total code lines: "+contributors[i].total;
@@ -290,7 +252,6 @@ function showInformations(contributors, data) {
         div.append(divClone);
     }
     //div.remove();
->>>>>>> 845f42b044dff998ec99037473dd1f35819bf119
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
