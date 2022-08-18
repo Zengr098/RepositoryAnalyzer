@@ -143,7 +143,7 @@ async function fetchCommits(contributors, url, issues, data){
         
         var name = request.committer.login;
         var total = request.stats.total;
-        var additions = request.stats.additions;            
+        var additions = request.stats.additions;
         var deletions = request.stats.deletions;
         var nfile = request.files.length;
 
@@ -228,7 +228,7 @@ function showInformations(contributors, data) {
         pname = divContributor.querySelector(".username");
         pcommit = divContributor.querySelector(".commit");
         ptotal = divContributor.querySelector(".total");
-        pembedded = divContributor.getElementsByClassName(".embedded");
+        pembedded = divContributor.querySelector(".embedded");
         premoved = divContributor.querySelector(".removed");
         plineforcommit = divContributor.querySelector(".lineforcommit");
         pnfile = divContributor.querySelector(".nfile");
@@ -249,9 +249,9 @@ function showInformations(contributors, data) {
         pcontribute.textContent = "Contribute percentage: "+contributors[i].contributepercentage+"%";
         pbug.textContent = "Issues fixed percentage: "+contributors[i].bugpercentage+"%";
 
-        container.append(divClone);
+        document.getElementById("fill").append(divClone);
     }
-    //container.remove();
+    container.remove();
 }
 
 // Funzione che mostra l'immagine dello sviluppatore
