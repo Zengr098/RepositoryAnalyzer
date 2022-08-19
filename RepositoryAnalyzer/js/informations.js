@@ -146,13 +146,35 @@ async function fetchCommits(contributors, url, issues, data){
         var additions = request.stats.additions;
         var deletions = request.stats.deletions;
         var nfile = request.files.length;
+        var lines = [];
+
+        for(var j=0; j<request.files.length; j++){
+            if(request.files[j].patch){
+                var file = request.files[j].patch.replaceAll(' ', '');
+
+                lines = lines.concat(file.split("\n"));
+                for(var k=0; k<lines.length; k++){
+                    //controllo se la riga inizia con +
+                    if(lines[k].startsWith("+")){
+                        //cancello il + e la lascio nell'array
+                        lines[k] = lines[k].substring(1);
+                    }
+                    //se non inizia con + la cancello perchè non è una riga aggiunta
+                    else{
+                        lines.splice(k, 1);
+                        k--;
+                    } 
+                }
+            } 
+        }
 
         var commit = {
             name: name,
             total: total,
             additions: additions,
             deletions: deletions,
-            nfile: nfile
+            nfile: nfile,
+            lines: lines
         }
 
         commits.push(commit);
@@ -242,10 +264,10 @@ function showInformations(contributors, data) {
         ptotal.textContent = "Total code lines: "+contributors[i].total;
         pembedded.textContent = "Added code lines: "+contributors[i].additions;
         premoved.textContent = "Removed code lines: "+contributors[i].deletions;
-        plineforcommit.textContent = "Code lines added for commit: "+contributors[i].lineforcommit;
-        pnfile.textContent = "File changed for commit: "+contributors[i].nfile;
-        popen.textContent = "Number of open issues: "+contributors[i].openissue;
-        pclose.textContent = "Number of close issue: "+contributors[i].closedissue;
+        plineforcommit.textContent = "Average code lines added for commit: "+contributors[i].lineforcommit;
+        pnfile.textContent = "Average file changed for commit: "+contributors[i].nfile;
+        popen.textContent = "Number of opened issues: "+contributors[i].openissue;
+        pclose.textContent = "Number of closed issue: "+contributors[i].closedissue;
         pcontribute.textContent = "Contribute percentage: "+contributors[i].contributepercentage+"%";
         pbug.textContent = "Issues fixed percentage: "+contributors[i].bugpercentage+"%";
 
