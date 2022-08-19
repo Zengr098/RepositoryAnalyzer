@@ -7381,10 +7381,6 @@ textarea.form-control-lg {
   margin-bottom: 1.5rem !important;
 }
 
-.mb-5 {
-  margin-bottom: 3rem !important;
-}
-
 .mb-auto {
   margin-bottom: auto !important;
 }
@@ -11625,6 +11621,7 @@ button:hover::after{
 
 div.row{
   margin-top: 50px;
+  text-align: center;
 }
 
 .div.mb-lg-0{
