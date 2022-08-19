@@ -42,10 +42,12 @@ function showRepoInfo(request) {
     nameRepo.textContent = request.name;
     div.append(nameRepo);
 
-    div = $(".description");
-    description = request.description;
-    description.textContent = request.description;
-    div.append(description);
+    if(request.description){
+        div = $(".description");
+        description = request.description;
+        description.textContent = request.description;
+        div.append(description);
+    }
 
     div = $(".create");
     create = createDate;
@@ -151,7 +153,6 @@ async function fetchCommits(contributors, url, issues, data){
         for(var j=0; j<request.files.length; j++){
             if(request.files[j].patch){
                 var file = request.files[j].patch.replaceAll(' ', '');
-
                 lines = lines.concat(file.split("\n"));
                 for(var k=0; k<lines.length; k++){
                     //controllo se la riga inizia con +
@@ -163,7 +164,8 @@ async function fetchCommits(contributors, url, issues, data){
                     else{
                         lines.splice(k, 1);
                         k--;
-                    } 
+                    }
+                    //PER OGNI FILE SALVARE LE METRICHE IN 3 VARIABILI E SVUOTARE L'ARRAY 
                 }
             } 
         }
@@ -269,7 +271,13 @@ function showInformations(contributors, data) {
         popen.textContent = "Number of opened issues: "+contributors[i].openissue;
         pclose.textContent = "Number of closed issue: "+contributors[i].closedissue;
         pcontribute.textContent = "Contribute percentage: "+contributors[i].contributepercentage+"%";
-        pbug.textContent = "Issues fixed percentage: "+contributors[i].bugpercentage+"%";
+        var bug = contributors[i].bugpercentage;
+        if(isNaN(bug)){
+            pbug.textContent = "Issues fixed percentage: 0.00%";
+        }
+        else{
+            pbug.textContent = "Issues fixed percentage: "+contributors[i].bugpercentage+"%";
+        }
 
         document.getElementById("fill").append(divClone);
     }
