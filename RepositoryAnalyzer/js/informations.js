@@ -366,8 +366,6 @@ function showInformations(contributors, data) {
         else{
             pwhite.textContent = "White lines percentage: "+whitelines+"%";
         }
-
-
         document.getElementById("fill").append(divClone);
     }
     container.remove();
