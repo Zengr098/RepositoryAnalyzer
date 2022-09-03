@@ -1,8 +1,8 @@
 {
   "name": "Repository Analyzer",
   "id": "repositoryanalyzer",
-  "version": "0.0.1",
-  "manifest_version": 2,
+  "version": "0.0.0.1",
+  "manifest_version": 3,
   "description": "Questa estensione quantifica il contributo degli sviluppatori che partecipano ad un progetto considerando i cambiamenti essenziali.",
   "icons": {
     "16": "src/browser_action/assets/img/icon16.png",
