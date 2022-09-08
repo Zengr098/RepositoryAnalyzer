@@ -3,7 +3,7 @@
   "id": "repositoryanalyzer",
   "version": "0.0.0.1",
   "manifest_version": 3,
-  "description": "Questa estensione quantifica il contributo degli sviluppatori che partecipano ad un progetto considerando i cambiamenti essenziali.",
+  "description": "Repository Analyzer is an extension that performs an analysis of the contribution made by each individual developer on any public Github repository",
   "icons": {
     "16": "src/browser_action/assets/img/icon16.png",
     "48": "src/browser_action/assets/img/icon48.png",
@@ -11,10 +11,9 @@
   },
   "default_locale": "en",
   "background": {
-    "page": "src/bg/background.html",
-    "persistent": true
+    "service_worker": "src/bg/background.html"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "src/browser_action/assets/img/icon16.png",
     "default_title": "Quantificazione del contributo",
     "default_popup": "src/browser_action/browser_action.html"
